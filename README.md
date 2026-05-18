@@ -37,11 +37,16 @@ orders-data-pipeline/
 │   ├── orders/                     
 │   └── products/                   
 │
+├── assets/
+├── requirements.txt
+├── metabase.sql
 ├── docker-compose.yml              
 ├── Dockerfile                      
 └── README.md
 ```
 
+- `assets`: Folder untuk menyimpan gambar dan diagram.
+- `metabase.sql`: Skrip SQL yang digunakan untuk membuat dashboard di Metabase.
 - `docker-compose.yml`: Konfigurasi Docker Compose untuk menjalankan Airflow, PostgreSQL, ClickHouse, dan Metabase.
 - `Dockerfile`: Basis image Airflow + instalasi Java untuk mendukung Spark.
 - `requirements.txt`: Dependensi Python yang dibutuhkan oleh Airflow dan skrip pipeline.
@@ -232,4 +237,6 @@ orders-data-pipeline/
    - Produk dengan reorder rate tinggi menunjukkan adanya kebutuhan berulang.
 
 
+# Logging Pipeline
 
+![log](assets/log.jpeg)
