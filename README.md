@@ -1,14 +1,46 @@
-# Anggota Kelompok:
+# Data Pipeline: API to ClickHouse
+
+*MCI Lab - Task 2 (Orchestration)*
+
+## Anggota Kelompok:
 | Nama | NRP | Jobdesk |
 | --- | --- | --- |
 | Muhammad Abid Baihaqi Al Faridzi | 5025241133 | - |
 | Dilbina Windi Azahra | 5025241180 | - |
 
-# Orders Pipeline
+## Overview
 
-Proyek ini adalah pipeline data sederhana yang dibuat dengan Apache Airflow, Apache Spark, dan ClickHouse. Tujuan utamanya adalah mengambil data pesanan (orders) dari API eksternal, menyimpannya di data lake lokal, memprosesnya dengan Spark, lalu memasukkannya ke ClickHouse untuk analitik.
+Proyek ini membangun sebuah *data pipeline* yang mengambil data dari API eksternal, memprosesnya, dan menyimpannya ke dalam ClickHouse. Pipeline ini diorkestrasi menggunakan Apache Airflow dan divisualisasikan dengan Metabase.
 
-## Struktur Proyek
+
+## Arsitektur & Alur Data
+
+1. **Extract (Ingestion):** Skrip `fetch_orders.py` menarik data JSON dari API Orders eksternal, melakukan *flattening* pada struktur data (Orders & Products), lalu menyimpannya ke dalam *Data Lake* lokal sebagai file `.parquet` yang terkompresi.
+2. **Transform (PySpark):** Skrip `process_orders_spark.py` membaca aliran file Parquet tersebut dan menangani nilai yang hilang (*missing values*). Skrip ini menghitung metrik **RFM (Recency, Frequency, Monetary)** untuk mengelompokkan pelanggan ke dalam segmen (Loyal, Regular, New/Occasional).
+3. **Load (ClickHouse):** Data mentah yang telah diperkaya beserta *Data Mart* agregasi dimuat ke dalam ClickHouse menggunakan engine **`MergeTree`** untuk mendukung optimasi kueri OLAP.
+4. **Orchestration:** Seluruh alur kerja diotomatisasi dan dijadwalkan secara berkala menggunakan **Apache Airflow**.
+5. **Observability:** Log eksekusi *pipeline*, durasi, status, serta *error* secara otomatis dicatat kembali ke dalam tabel khusus di ClickHouse (`pipeline_logs`) untuk memonitorkan kinerja pipeline.
+6. **Visualization:** Metabase terhubung ke ClickHouse untuk menyajikan *dashboard* interaktif.
+
+## Struktur Direktori Proyek
+
+```text
+orders-data-pipeline/
+│
+├── dags/
+│   ├── orders_pipeline.py                 
+│   └── scripts/
+│       ├── fetch_orders.py         
+│       └── process_orders_spark.py 
+│
+├── data_lake/
+│   ├── orders/                     
+│   └── products/                   
+│
+├── docker-compose.yml              
+├── Dockerfile                      
+└── README.md
+```
 
 - `docker-compose.yml`: Konfigurasi Docker Compose untuk menjalankan Airflow, PostgreSQL, ClickHouse, dan Metabase.
 - `Dockerfile`: Basis image Airflow + instalasi Java untuk mendukung Spark.
@@ -86,6 +118,8 @@ Proyek ini adalah pipeline data sederhana yang dibuat dengan Apache Airflow, Apa
 ### `dags/scripts/process_orders_spark.py`
 - Membaca data Parquet dengan Spark.
 - Melakukan transformasi kolom dan membersihkan nilai kosong.
+- Melakukan aggregasi untuk menghitung metrik RFM.
+- Membuat logging pipeline ke ClickHouse untuk observability.
 - Menyinkronkan data ke ClickHouse dengan model tabel analytics.
 - Menghapus file Parquet usang setelah dimuat.
 
@@ -113,5 +147,3 @@ Proyek ini adalah pipeline data sederhana yang dibuat dengan Apache Airflow, Apa
 - Tabel ClickHouse:
   - `analytics.orders`
   - `analytics.orders_products`
-
-Semoga README ini membantu menjelaskan struktur dan alur kerja proyek orders pipeline Anda.
