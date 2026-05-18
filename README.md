@@ -150,86 +150,86 @@ orders-data-pipeline/
 
 1. Department Sales Contribution
 
-Visualisasi ini menampilkan kontribusi jumlah produk terjual berdasarkan department.
+   Visualisasi ini menampilkan kontribusi jumlah produk terjual berdasarkan department.
 
-**Key Insight:**
+   **Key Insight:**
 
-- Department `produce` menjadi kontributor terbesar. 
-- Mayoritas customer melakukan pembelian kebutuhan sehari-hari (daily essentials dan groceries).
+   - Department `produce` menjadi kontributor terbesar. 
+   - Mayoritas customer melakukan pembelian kebutuhan sehari-hari (daily essentials dan groceries).
 
 2. Total Orders KPI
 
-Menampilkan total order yang diproses oleh pipeline.
+   Menampilkan total order yang diproses oleh pipeline.
 
-**Key Insight:**
+   **Key Insight:**
 
-- Total order yang berhasil diproses adalah **300** order.
+   - Total order yang berhasil diproses adalah **300** order.
 
 3. Total Products Sold KPI
 
-Menampilkan total item yang berhasil terjual.
+   Menampilkan total item yang berhasil terjual.
 
-**Key Insight:**
+   **Key Insight:**
 
-- Total produk yang terjual mencapai **3326** item.
-- Jumlah produk yang terjual jauh lebih besar dibanding jumlah transaksi order.
+   - Total produk yang terjual mencapai **3326** item.
+   - Jumlah produk yang terjual jauh lebih besar dibanding jumlah transaksi order.
 
 4. RFM Value Contribution & Customer Segmentation Breakdown
 
-Visualisasi ini menunjukkan kontribusi customer berdasarkan RFM segmentation dan distribusi segmentasi customer.
+   Visualisasi ini menunjukkan kontribusi customer berdasarkan RFM segmentation dan distribusi segmentasi customer.
 
-**RFM Components:**
+   **RFM Components:**
 
-- Recency → rata-rata jarak hari antar order
-- Frequency → jumlah transaksi
-- Monetary → total volume item yang dibeli
+   - Recency → rata-rata jarak hari antar order
+   - Frequency → jumlah transaksi
+   - Monetary → total volume item yang dibeli
 
-**Key Insight:**
+   **Key Insight:**
 
-Semua customer masih berada pada segment:
-- `New/Occasional`
-- Dataset masih didominasi customer dengan aktivitas transaksi rendah.
+   Semua customer masih berada pada segment:
+   - `New/Occasional`
+   - Dataset masih didominasi customer dengan aktivitas transaksi rendah.
 
 5. Distribusi Order per Hari
 
-Visualisasi ini menunjukkan distribusi jumlah transaksi berdasarkan hari.
+   Visualisasi ini menunjukkan distribusi jumlah transaksi berdasarkan hari.
 
-**Key Insight:**
+   **Key Insight:**
 
-Aktivitas order tertinggi terjadi pada:
-- Saturday
-- Monday
-- Tuesday
+   Aktivitas order tertinggi terjadi pada:
+   - Saturday
+   - Monday
+   - Tuesday
 
-Hal ini menunjukkan bahwa pelanggan cenderung melakukan pembelian pada awal minggu dan akhir pekan.
+   Hal ini menunjukkan bahwa pelanggan cenderung melakukan pembelian pada awal minggu dan akhir pekan.
 
 6. Top 10 Product Terlaris
 
-Visualisasi ini menunjukkan produk dengan total order tertinggi.
+   Visualisasi ini menunjukkan produk dengan total order tertinggi.
 
-**Key Insight:**
+   **Key Insight:**
 
-Produk terlaris adalah:
-- Banana
-- Bag of Organic Bananas
-- Organic Baby Spinach
-- Organic Strawberries
-- Organic Hass Avocado
-- Limes
-- Organic Whole Milk
-- Organic Lemon
-- Organic Cucumber
-- Organic Garlic
+   Produk terlaris adalah:
+   - Banana
+   - Bag of Organic Bananas
+   - Organic Baby Spinach
+   - Organic Strawberries
+   - Organic Hass Avocado
+   - Limes
+   - Organic Whole Milk
+   - Organic Lemon
+   - Organic Cucumber
+   - Organic Garlic
 
-Hal ini menunjukkan bahwa produk organik dan kebutuhan sehari-hari mendominasi penjualan.
+   Hal ini menunjukkan bahwa produk organik dan kebutuhan sehari-hari mendominasi penjualan.
 
 7. High Reorder Rate Products
 
-Tabel ini menunjukkan produk dengan tingkat reorder tertinggi.
+   Tabel ini menunjukkan produk dengan tingkat reorder tertinggi.
 
-**Key Insight:**
+   **Key Insight:**
 
-- Produk dengan reorder rate tinggi menunjukkan adanya kebutuhan berulang.
+   - Produk dengan reorder rate tinggi menunjukkan adanya kebutuhan berulang.
 
 
 
