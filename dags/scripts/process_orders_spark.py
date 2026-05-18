@@ -11,7 +11,6 @@ def run_spark_analytics():
         .getOrCreate()
 
     print("Membaca seluruh aliran data dari Data Lake...")
-    # Spark dengan mudah membaca SEMUA file parquet di folder ini sekaligus
     df_orders = spark.read.parquet("file:///opt/airflow/data_lake/orders/orders_*.parquet")
     df_products = spark.read.parquet("file:///opt/airflow/data_lake/products/products_*.parquet")
 
@@ -57,10 +56,6 @@ def run_spark_analytics():
 
     print("Memuat ke ClickHouse Warehouse...")
 
-    # --- PERBAIKAN MULAI DI SINI ---
-    # Tambahkan parameter user dan password sesuai dengan pengaturan ClickHouse Anda
-    # Jika Anda menggunakan default bawaan docker, biasanya user='default' dan password='' (kosong)
-    # ATAU jika Anda mengatur password di docker-compose.yml, masukkan di sini.
     client = Client(
         host='clickhouse-server',
         user='admin',          
@@ -98,24 +93,14 @@ def run_spark_analytics():
         ORDER BY (order_id, product_id )
     ''')
 
-
-    
-    # Mode Overwrite (Truncate & Insert) agar dasbor Metabase selalu fresh
-    # API bakal ditaruh di data lake baru ke cllickhouse, baru nanti buat metabase connect ke clickhouse untuk visualisasi
-    # Truncate & Insert orders
     client.execute('TRUNCATE TABLE analytics.orders') 
     if orders_data: 
         client.execute('INSERT INTO analytics.orders VALUES', orders_data)
 
-
-
-    # Truncate & Insert products
     client.execute('TRUNCATE TABLE analytics.orders_products')
     if products_data:
         client.execute('INSERT INTO analytics.orders_products VALUES', products_data)
 
-    # Menghapus file .parquet yang sudah diproses agar tidak menumpuk
-    print("Membersihkan file Parquet lama dari Data Lake...")
     files = glob.glob('/opt/airflow/data_lake/orders/*.parquet')
     for f in files:
         try:
@@ -131,7 +116,5 @@ def run_spark_analytics():
         except OSError as e:
             print(f"Error: {f} : {e.strerror}")
     
-    print("✅ Pipeline Selesai!")
-
 if __name__ == "__main__":
     run_spark_analytics()

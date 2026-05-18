@@ -12,7 +12,6 @@ def fetch_orders():
     
 
     try:
-        # PERBAIKAN: Menyisipkan parameter headers ke dalam requests.get
         response = requests.get(url, params=params, timeout=10)
         response.raise_for_status()
         data = response.json()
@@ -58,10 +57,10 @@ def fetch_orders():
         df_orders.to_parquet(orders_path, index=False)
         df_products.to_parquet(products_path, index=False)
         
-        print(f"✅ Sukses menyimpan {len(df_orders)} orders ke {orders_path}")
-        print(f"✅ Sukses menyimpan {len(df_products)} products ke {products_path}")
+        print(f"Successfully fetched and saved {len(df_orders)} orders to {orders_path}")
+        print(f"Successfully fetched and saved {len(df_products)} products to {products_path}")
     except Exception as e:
-        print(f"❌ Gagal menarik data: {e}")
+        print(f"Error fetching data: {e}")
         raise
 
 if __name__ == "__main__":
