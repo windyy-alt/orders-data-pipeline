@@ -8,10 +8,13 @@
 | Muhammad Abid Baihaqi Al Faridzi | 5025241133 | 50% |
 | Dilbina Windi Azahra | 5025241180 | 50% |
 
+--- 
+
 ## Overview
 
 Proyek ini membangun sebuah *data pipeline* yang mengambil data dari API eksternal, memprosesnya, dan menyimpannya ke dalam ClickHouse. Kemudian, diorkestrasi menggunakan Apache Airflow dan divisualisasikan dengan Metabase.
 
+---
 
 ## Arsitektur & Alur Data
 
@@ -21,6 +24,8 @@ Proyek ini membangun sebuah *data pipeline* yang mengambil data dari API ekstern
 4. **Orchestration:** Seluruh alur kerja diotomatisasi dan dijadwalkan secara berkala menggunakan **Apache Airflow**.
 5. **Observability:** Log eksekusi *pipeline*, durasi, status, serta *error* secara otomatis dicatat kembali ke dalam tabel khusus di ClickHouse (`pipeline_logs`) untuk memonitorkan kinerja pipeline.
 6. **Visualization:** Metabase terhubung ke ClickHouse untuk menyajikan *dashboard* interaktif.
+
+---
 
 ## Struktur Direktori Proyek
 
@@ -56,6 +61,8 @@ orders-data-pipeline/
 - `data_lake/orders/`: Folder penyimpanan file Parquet untuk data orders.
 - `data_lake/products/`: Folder penyimpanan file Parquet untuk data produk yang terkait pesanan.
 
+---
+
 ## Alur Kerja
 
 1. `docker-compose up` menjalankan seluruh stack:
@@ -89,6 +96,8 @@ orders-data-pipeline/
    - Membuat tabel `analytics.orders` dan `analytics.orders_products` jika belum ada.
    - Mengosongkan tabel ClickHouse, lalu melakukan insert ulang data dari Parquet.
    - Menghapus file Parquet yang sudah diproses agar data lake tetap bersih.
+
+---
 
 ## Tujuan Setiap File
 
@@ -128,12 +137,16 @@ orders-data-pipeline/
 - Menyinkronkan data ke ClickHouse dengan model tabel analytics.
 - Menghapus file Parquet usang setelah dimuat.
 
+---
+
 ## Catatan Tambahan
 
 - Path hardcoded di Airflow task menggunakan `/opt/airflow/dags/scripts/...` karena container mapping volume ke folder lokal.
 - ClickHouse diakses pada `clickhouse-server` sesuai service name Docker Compose.
 - Proses ini menggunakan pendekatan `truncate & insert` agar tabel analitik selalu fresh.
 - Jika ingin menjalankan ulang pipeline, pastikan `docker-compose up --build` dijalankan dan DAG Airflow dieksekusi dari UI atau trigger manual.
+
+---
 
 ## Cara Jalankan
 
@@ -145,6 +158,8 @@ orders-data-pipeline/
 2. Buka Airflow UI di `http://localhost:8080`.
 3. Aktifkan dan jalankan DAG `orders_pipeline`.
 4. Gunakan ClickHouse client atau Metabase untuk memeriksa data di database `analytics`.
+
+---
 
 ## Visualisasi Dashboard
 
@@ -236,6 +251,7 @@ orders-data-pipeline/
 
    - Produk dengan reorder rate tinggi menunjukkan adanya kebutuhan berulang.
 
+---
 
 # Logging Pipeline
 
