@@ -10,7 +10,7 @@
 
 ## Overview
 
-Proyek ini membangun sebuah *data pipeline* yang mengambil data dari API eksternal, memprosesnya, dan menyimpannya ke dalam ClickHouse. Pipeline ini diorkestrasi menggunakan Apache Airflow dan divisualisasikan dengan Metabase.
+Proyek ini membangun sebuah *data pipeline* yang mengambil data dari API eksternal, memprosesnya, dan menyimpannya ke dalam ClickHouse. Kemudian, diorkestrasi menggunakan Apache Airflow dan divisualisasikan dengan Metabase.
 
 
 ## Arsitektur & Alur Data
