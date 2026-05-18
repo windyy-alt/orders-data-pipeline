@@ -131,7 +131,7 @@ def run_spark_analytics():
                 CREATE TABLE IF NOT EXISTS analytics.mart_rfm (
                     user_id Int32, frequency Int32, monetary_volume Int32,
                     total_days_active Float64, recency_avg_days Float64, customer_segment String
-                ) ENGINE = MergeTree() ORDER BY frequency DESC
+                ) ENGINE = MergeTree() ORDER BY frequency 
             ''')
 
             # DDL for Pipeline Observability Table
