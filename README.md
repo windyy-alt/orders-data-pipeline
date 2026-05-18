@@ -3,10 +3,10 @@
 *MCI Lab - Task 2 (Orchestration)*
 
 ## Anggota Kelompok:
-| Nama | NRP | Kontribusi |
+| Nama | NRP | Kontribusi (%)|
 | --- | --- | --- |
-| Muhammad Abid Baihaqi Al Faridzi | 5025241133 |  |
-| Dilbina Windi Azahra | 5025241180 | - |
+| Muhammad Abid Baihaqi Al Faridzi | 5025241133 | 50% |
+| Dilbina Windi Azahra | 5025241180 | 50% |
 
 ## Overview
 
