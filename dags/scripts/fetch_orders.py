@@ -10,9 +10,8 @@ def fetch_orders():
         "table_name": "orders",
     }
     
-
     try:
-        response = requests.get(url, params=params, timeout=10)
+        response = requests.get(url, params=params, timeout=30)
         response.raise_for_status()
         data = response.json()
         orders = data['orders']
@@ -45,15 +44,16 @@ def fetch_orders():
                     'reordered': product.get('reordered')
                 })
         
-            
         df_orders = pd.DataFrame(orders_data)
         df_products = pd.DataFrame(products_data)
 
-        # Simpan ke Data Lake lokal 
         current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
         orders_path = f'/opt/airflow/data_lake/orders/orders_{current_time}.parquet'
         products_path = f'/opt/airflow/data_lake/products/products_{current_time}.parquet'
+        
         os.makedirs(os.path.dirname(orders_path), exist_ok=True)
+        os.makedirs(os.path.dirname(products_path), exist_ok=True)
+        
         df_orders.to_parquet(orders_path, index=False)
         df_products.to_parquet(products_path, index=False)
         
