@@ -1,3 +1,9 @@
+# Anggota Kelompok:
+| Nama | NRP | Jobdesk |
+| --- | --- | --- |
+| Muhammad Abid Baihaqi Al Faridzi | 5025241133 | - |
+| Dilbina Windi Azahra | 5025241180 | - |
+
 # Orders Pipeline
 
 Proyek ini adalah pipeline data sederhana yang dibuat dengan Apache Airflow, Apache Spark, dan ClickHouse. Tujuan utamanya adalah mengambil data pesanan (orders) dari API eksternal, menyimpannya di data lake lokal, memprosesnya dengan Spark, lalu memasukkannya ke ClickHouse untuk analitik.
