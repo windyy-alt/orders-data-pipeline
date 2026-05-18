@@ -1,0 +1,11 @@
+# Mengabaikan Data dan Log Airflow
+data_lake/
+logs/
+
+# Mengabaikan cache Python
+__pycache__/
+*.pyc
+.DS_Store
+
+# Jika Anda nantinya menggunakan file environment untuk password
+.env
